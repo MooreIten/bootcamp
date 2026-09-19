@@ -9,8 +9,31 @@
   --border-color: #dce8e3;
   --completed-color: #9aa9a4;
   --shadow-color: rgba(31, 74, 65, 0.14);
+  --surface-muted: #f7faf8;
+  --filter-background: #f1f6f3;
+  --card-border: rgba(255, 255, 255, 0.9);
+  --danger-background: #fceceb;
+  --danger-color: #b05050;
   --radius-large: 24px;
   --radius-small: 12px;
+}
+
+:root[data-theme="dark"] {
+  --page-background: #172522;
+  --card-background: #223732;
+  --primary-color: #67c5ae;
+  --primary-dark: #a0e2d0;
+  --accent-color: #f3c47d;
+  --text-color: #edf8f3;
+  --muted-color: #a6bbb3;
+  --border-color: #3d574f;
+  --completed-color: #78938a;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --surface-muted: #29433c;
+  --filter-background: #1c2f2a;
+  --card-border: rgba(124, 174, 158, 0.2);
+  --danger-background: #4a2d2d;
+  --danger-color: #f0a5a5;
 }
 
 * {
@@ -36,12 +59,16 @@ body {
   padding: clamp(24px, 6vw, 42px);
   overflow: hidden;
   background: var(--card-background);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-large);
   box-shadow: 0 18px 50px var(--shadow-color);
 }
 
 .todo-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 16px;
   margin-bottom: 28px;
 }
 
@@ -61,9 +88,31 @@ h1 {
 }
 
 .subtitle {
+  grid-column: 1 / -1;
   margin: 12px 0 0;
   color: var(--muted-color);
   font-size: 0.94rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  color: var(--primary-dark);
+  background: var(--surface-muted);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background: var(--filter-background);
 }
 
 .todo-form {
@@ -77,7 +126,7 @@ h1 {
   flex: 1;
   padding: 13px 15px;
   color: var(--text-color);
-  background: #f7faf8;
+  background: var(--surface-muted);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-small);
   outline: none;
@@ -117,7 +166,7 @@ h1 {
   gap: 8px;
   padding: 4px;
   margin-bottom: 18px;
-  background: #f1f6f3;
+  background: var(--filter-background);
   border-radius: var(--radius-small);
 }
 
@@ -163,7 +212,7 @@ h1 {
   align-items: center;
   gap: 12px;
   padding: 13px 12px;
-  background: #f7faf8;
+  background: var(--surface-muted);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-small);
   animation: item-in 220ms ease both;
@@ -200,8 +249,8 @@ h1 {
 
 .delete-button:hover,
 .delete-button:focus-visible {
-  color: #b05050;
-  background: #fceceb;
+  color: var(--danger-color);
+  background: var(--danger-background);
 }
 
 .empty-message {
@@ -271,5 +320,13 @@ h1 {
 
   .todo-form button {
     padding: 0 15px;
+  }
+
+  .theme-toggle {
+    padding: 7px 8px;
+  }
+
+  #theme-label {
+    display: none;
   }
 }
