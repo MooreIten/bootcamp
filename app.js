@@ -101,6 +101,7 @@ function renderTodos() {
 
   const unfinishedCount = todos.filter((todo) => !todo.completed).length;
   remainingCount.textContent = `未完成：${unfinishedCount} 項`;
+  clearCompletedButton.disabled = !todos.some((todo) => todo.completed);
 }
 
 todoForm.addEventListener("submit", (event) => {
@@ -124,6 +125,10 @@ todoForm.addEventListener("submit", (event) => {
 });
 
 clearCompletedButton.addEventListener("click", () => {
+  if (!confirm("確定要刪除所有已完成的待辦事項嗎？此操作無法復原。")) {
+    return;
+  }
+
   todos = todos.filter((todo) => !todo.completed);
   saveTodos();
   renderTodos();
