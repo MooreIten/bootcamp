@@ -59,9 +59,9 @@ function renderTodos() {
   emptyMessage.textContent = todos.length === 0
     ? "還沒有任何待辦事項，新增一個吧!"
     : currentFilter === "active"
-      ? "目前沒有未完成事項。"
+      ? "目前沒有未完成事項，項目仍在清單中，只是被目前篩選條件隱藏。"
       : currentFilter === "completed"
-        ? "目前沒有已完成事項。"
+        ? "目前沒有已完成事項，項目仍在清單中，只是被目前篩選條件隱藏。"
         : "此分類沒有待辦事項。";
 
   visibleTodos.forEach((todo) => {
